@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Wheater App</title>
+</head>
+<body>
+    <main class="container">
+        <div class="search-container" onmouseenter="openInput()" onmouseleave="closeInput()">
+            <input type="text" name="search" id="search-input" placeholder="Search">
+            <button id="search-button">Search</button>
+        </div>
+    </main>
+    <script>
+        const openInput = () => {
+            document.getElementById('search-input').style.width = '100%';
+            
+            setTimeout(() => {
+                if(document.getElementById("search-input").style.width == '100%') {
+                    document.getElementById("search-button").style.display = 'block';
+                }
+            }, 290);
+        }
+
+        const closeInput = () => {
+            document.getElementById('search-input').style.width = '103px';
+            document.getElementById("search-button").style.display = 'none';
+        }
+    </script>
+</body>
+</html>
