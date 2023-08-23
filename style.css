@@ -63,9 +63,18 @@ body {
     background-color: transparent;
     align-self: end;
     right: 30px;
+    padding: 10px;
     display: none;
 
     transition: display 1s linear;
+}
+
+#search-button:hover {
+    background-color: rgb(216, 216, 216);
+    border-radius: 50%;
+    padding: 10px;
+
+    cursor: pointer;
 }
 
 .search-container > * {
