@@ -10,10 +10,57 @@ const getTemp = async () => {
 
     const request = await query.json();
 
-    if(request.weather[0].description === 'clear sky') {
-        document.getElementById("image-temp").style.display = 'block';
-        document.getElementById("image-temp").src = 'https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/2nd%20Set%20-%20Color/clear-day.png'
+    const isDay = request.weather[0].icon.indexOf("d") === -1 ? false : true;
+
+    document.getElementById("image-temp").style.display = 'block';
+
+    switch(request.weather[0].main) {
+        case 'Clear':
+            document.getElementById("image-temp").src = isDay ? 'src/svg/clear-sky-d.svg' : 'src/svg/clear-sky-n.svg';
+        break;
+        case 'Clouds':
+            switch(request.weather[0].description) {
+                case 'few clouds':
+                    document.getElementById("image-temp").src = isDay ? 'src/svg/few-clouds-d.svg' : 'src/svg/few-clouds-n.svg';
+                break;
+                case 'scattered clouds':
+                    document.getElementById("image-temp").src = 'src/svg/scattered-clouds.svg';
+                break;
+                case 'broken clouds':
+                    document.getElementById("image-temp").src = 'src/svg/broken-clouds.svg';
+                break;
+                default:
+                    document.getElementById("image-temp").src = isDay ? 'src/svg/few-clouds-d.svg' : 'src/svg/few-clouds-n.svg';
+                break;
+            }
+        break;
+        case 'Rain':
+            switch(request.weather[0].description) {
+                case 'rain':
+                    document.getElementById("image-temp").src = isDay ? 'src/svg/rain-d.svg' : 'src/svg/rain-n.svg';
+                break;
+                case 'shower rain':
+                    document.getElementById("image-temp").src = 'src/svg/shower-rain.svg';
+                break;
+                default:
+                    document.getElementById("image-temp").src = isDay ? 'src/svg/rain-d.svg' : 'src/svg/rain-n.svg';
+                break;
+            }
+        break;
+        case 'Thunderstorm':
+            document.getElementById("image-temp").src = isDay ? 'src/svg/thunderstorm-d.svg' : 'src/svg/thunderstorm-n.svg';
+        break;
+        case 'Snow':
+            document.getElementById("image-temp").src = isDay ? 'src/svg/snow-d.svg' : 'src/svg/snow-n.svg';
+        break;
+        case 'Mist':
+            document.getElementById("image-temp").src = 'src/svg/mist.svg';
+        break;
     }
+    // if(request.weather[0].description === 'clear sky') {
+    //     
+    //     document.getElementById("image-temp").src = 'https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/2nd%20Set%20-%20Color/clear-day.png'
+    // }
     console.log(request);
 }
 
